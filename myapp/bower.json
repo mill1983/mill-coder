@@ -1,0 +1,19 @@
+{
+  "name": "myapp",
+  "description": "",
+  "main": "",
+  "authors": [
+    "mill1983 <mill1983@126.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/mill1983/mill-coder",
+  "dependencies": {
+    "angular": "^1.6.1",
+    "angular-bootstrap": "^2.4.0",
+    "requirejs": "^2.3.2",
+    "ace": "^1.2.6",
+    "angular-ui-tree": "^2.22.2",
+    "angular-route": "^1.5.11",
+    "bootstrap": "^3.3.7"
+  }
+}
