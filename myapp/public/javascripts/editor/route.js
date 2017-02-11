@@ -1,10 +1,10 @@
-define(["app"],function (app) {
+define(['app'],function (app) {
 	app.config(['$routeProvider',
 		function (route) {
 		route
 		.when("/",{
 			controller:'IndexCtrl',
-			templateUrl:'/html/index/index.html'
+			templateUrl:'/html/editor/index.html'
 		})
 		.when('/editor/:content', {
 			controller: 'EditorCtrl',

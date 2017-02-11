@@ -4,5 +4,5 @@ define([
 	"ui-bootstrap",
 
 	],function (angular) {
-	return angular.module("myApp",["ngRoute","ui.bootstrap"]);
+	return angular.module("myApp",["ngRoute","ui.bootstrap","ui.tree"]);
 })

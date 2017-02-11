@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  style(type="text/css" media="screen").
+        #editor{
+          top:0;
+          right:0;
+          bottom:0;
+          left:0;
+          height:500px;
+          font-size:14px;
+        }
+  script(type="text/javascript",data-main="/javascripts/editor/main",src="/requirejs/require.js")
+  .row.clearfix
+    .col-md-12.column
+      form.form-horizontal(role="form")
+        .form-group
+          label.col-sm-2.control-label(for="inputEmail3") 设置根路径
+          | 					
+          .col-sm-10
+            input#inputEmail3.form-control(type="email")
+        | 				
+        .form-group
+          label.col-sm-2.control-label(for="inputPassword3") 搜索内容
+          | 					
+          .col-sm-10
+            input#inputPassword3.form-control(type="password")
+        | 				
+        | 				
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            button.btn.btn-default(type="submit") 按文件名搜索
+            | 						 
+            button.btn.btn-default(type="submit") 全文搜索
+  .row.clearfix
+    .col-md-3.column(ng-controller="treeCtrl")
+      treecontrol.tree-classic(tree-model="dataForTheTree",options="treeOptions", on-selection="showSelected(node)", selected-node="node1")
+        | {{node.name}} 
+    .col-md-9.column
+      #editor

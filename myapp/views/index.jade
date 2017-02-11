@@ -1,15 +1,17 @@
 extends layout
 
 block content
+  script(type="text/javascript",data-main="javascripts/index/main",src="requirejs/require.js")
   style(type="text/css" media="screen").
     #editor{
       top:0;
       right:0;
       bottom:0;
       left:0;
+      height:500px;
+      font-size:14px;
     }
   div(ng-view)
-  #editor #{content}
   script(src="/ace/build/src/ace.js")
   script(src="/ace/build/src/ext-language_tools.js")
     

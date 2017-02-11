@@ -1,0 +1,13 @@
+<div ui-tree data-drag-enabled="false" class="list-group">
+  <ol class="list-group-item" ui-tree-nodes="" ng-model="list">
+    <li class="list-group-item" ng-repeat="item in list" ui-tree-node>
+      <a ng-href="{{item.url}}">{{item.title}}</a>
+
+      <ol class="list-group-item" ui-tree-nodes="" ng-model="item.items">
+        <li class="list-group-item" ng-repeat="subItem in item.items" ui-tree-node>
+      <a ng-href="{{subItem.url}}">{{subItem.title}}</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+  </div>
