@@ -1,5 +1,5 @@
 define(['app'],function (app) {
-	app.controller('treeCtrl',['$scope','$http',function (scope,http) {
+	app.controller('treeCtrl',['$scope','$http','doPath','$routeParams',function (scope,http,location,params) {
 		scope.treeOptions = {
 		    nodeChildren: "child",
 		    dirSelectable: true,
@@ -14,23 +14,14 @@ define(['app'],function (app) {
 		        labelSelected: "a8"
 		    }
 		}
-		http.get('/editor/filetree')
+		scope.buttonClick = function($event, node) {
+			location.goPath(node,0);
+			$event.stopPropagation();
+	     };
+		http.post('/editor/filetree?time='+(new Date()).getTime(),{url:params.root})
 		.then(function (data) {
 			scope.dataForTheTree=data.data;
 		})
-		// scope.dataForTheTree =
-		// [
-		//     { "name" : "Joe", "age" : "21", "children" : [
-		//         { "name" : "Smith", "age" : "42", "children" : [] },
-		//         { "name" : "Gary", "age" : "21", "children" : [
-		//             { "name" : "Jenifer", "age" : "23", "children" : [
-		//                 { "name" : "Dani", "age" : "32", "children" : [] },
-		//                 { "name" : "Max", "age" : "34", "children" : [] }
-		//             ]}
-		//         ]}
-		//     ]},
-		//     { "name" : "Albert", "age" : "33", "children" : [] },
-		//     { "name" : "Ron", "age" : "29", "children" : [] }
-		// ];
+		
 	}]);
 });

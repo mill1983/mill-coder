@@ -10,7 +10,7 @@ obj.on=event.on;
 obj.emit=event.emit;
 function walk(path,file) {  
 	
-	if(floor==0){
+	if(file==null){
 		file={};
 		file.name="root";
 		file.path=path;

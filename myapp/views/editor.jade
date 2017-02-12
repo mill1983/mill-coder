@@ -13,12 +13,12 @@ block content
   script(type="text/javascript",data-main="/javascripts/editor/main",src="/requirejs/require.js")
   .row.clearfix
     .col-md-12.column
-      form.form-horizontal(role="form")
+      form.form-horizontal(role="form",ng-controller="formCtrl")
         .form-group
           label.col-sm-2.control-label(for="inputEmail3") 设置根路径
           | 					
           .col-sm-10
-            input#inputEmail3.form-control(type="email")
+            input#inputEmail3.form-control(type="text",ng-model="data.root")
         | 				
         .form-group
           label.col-sm-2.control-label(for="inputPassword3") 搜索内容
@@ -29,12 +29,7 @@ block content
         | 				
         .form-group
           .col-sm-offset-2.col-sm-10
-            button.btn.btn-default(type="submit") 按文件名搜索
+            button.btn.btn-default(type="submit",ng-click="search()") 按文件名搜索
             | 						 
             button.btn.btn-default(type="submit") 全文搜索
-  .row.clearfix
-    .col-md-3.column(ng-controller="treeCtrl")
-      treecontrol.tree-classic(tree-model="dataForTheTree",options="treeOptions", on-selection="showSelected(node)", selected-node="node1")
-        | {{node.name}} 
-    .col-md-9.column
-      #editor
+  div(ng-view)

@@ -2,7 +2,7 @@ define(['app'],function (app) {
 	app.config(['$routeProvider',
 		function (route) {
 		route
-		.when("/",{
+		.when("/:url/:root",{
 			controller:'IndexCtrl',
 			templateUrl:'/html/editor/index.html'
 		})
@@ -10,7 +10,7 @@ define(['app'],function (app) {
 			controller: 'EditorCtrl',
 			templateUrl: '/html/index/edit.html'
 		}).otherwise({
-			redirectTo: '/'
+			redirectTo: '/temp/aa'
 		});
 	}]);
 })

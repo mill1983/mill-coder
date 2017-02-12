@@ -3,70 +3,26 @@
 			<div class="alert alert-dismissable alert-info">
 				 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 				<h4>
-					没有符合条件的文件!
+					没有符合条件的文件!mill
 				</h4> 在上面的文本框中输入搜索条件,并进行搜索。
 			</div>
 		</div>
 	</div>
-<div class="row clearfix" ng-if="result">
-		<div class="col-md-12 column">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>
-							编号
-						</th>
-						<th>
-							文件名
-						</th>
-						<th>
-							文件路径
-						</th>
-						<th>
-							打开
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="x in result.data" ng-class="{{result.statu}}">
-						<td>
-							{{$index}}
-						</td>
-						<td>
-							{{x.name}}
-						</td>
-						<td>
-							{{x.path}}
-						</td>
-						<td>
-							{{x.url}}
-						</td>
-					</tr>
-					
-				</tbody>
-			</table>
-			<ul class="pagination">
-				<li>
-					 <a href="#">Prev</a>
-				</li>
-				<li>
-					 <a href="#">1</a>
-				</li>
-				<li>
-					 <a href="#">2</a>
-				</li>
-				<li>
-					 <a href="#">3</a>
-				</li>
-				<li>
-					 <a href="#">4</a>
-				</li>
-				<li>
-					 <a href="#">5</a>
-				</li>
-				<li>
-					 <a href="#">Next</a>
-				</li>
-			</ul>
+<div class="row clearfix">
+	<div ng-controller="treeCtrl" class="col-md-3 column">
+		<treecontrol tree-model="dataForTheTree" options="treeOptions" on-selection="showSelected(node)"
+		selected-node="node1" class="tree-classic">
+			<span ng-click="buttonClick($event, node)">{{$index}} {{node.name}}</span> 
+		</treecontrol>
+	</div>
+	<div class="col-md-9 column">
+	<div class="btn-group">
+		<button ng-repeat="x in buttons" ng-click="funcs[x.fun]()" class="btn btn-default" type="button">
+			{{x.title}}
+		</button>
+		
+	</div>
+		<div id="editor">
 		</div>
 	</div>
+</div>

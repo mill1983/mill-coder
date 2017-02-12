@@ -8,6 +8,7 @@ requirejs.config({
         "angular-tree":"/angular-tree-control/angular-tree-control",
         "nav":"/javascripts/common/nav",
         "navCtrl":"/javascripts/common/navCtrl",
+        "urlEncode":"/javascripts/common/urlEncode",
         "aceconf":"/javascripts/common/aceconf",
 	},
 	shim:{
@@ -58,22 +59,18 @@ require([
     "ace",
     "ext-language",
     "app",
+    "doPath",
+    "urlEncode",
     "treeCtrl",
-     "indexCtrl",
-     "EditorCtrl",
-     "navCtrl",
+    "formCtrl",
+    "indexCtrl",
+    "EditorCtrl",
+    "navCtrl",
     "nav",
     "route",
 
     ],function (angular) {
     
     angular.bootstrap(document,["editorApp"]);
-    var editor = ace.edit("editor");
-    editor.setOptions({
-        enableBasicAutocompletion: true,
-        enableSnippets: true,
-        enableLiveAutocompletion: true
-    });
-    editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/java");
+    
 });
