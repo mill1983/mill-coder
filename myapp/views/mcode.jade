@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  style(type="text/css" media="screen").
+        #editor{
+          top:0;
+          right:0;
+          bottom:0;
+          left:0;
+          height:500px;
+          font-size:14px;
+        }
+  script(type="text/javascript",data-main="/javascripts/mcode/main",src="/requirejs/require.js")
+  div(ng-view)

@@ -4,5 +4,5 @@ var obj={};
 gu.walk("/Users/mill/Documents/node/web/mill-coder/myapp/public/javascripts",obj)
 
 console.log(obj)
-
+//这个地方有我的注释
 

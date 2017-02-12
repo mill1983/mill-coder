@@ -18,10 +18,14 @@ define(['app'],function (app) {
 			location.goPath(node,0);
 			$event.stopPropagation();
 	     };
-		http.post('/editor/filetree?time='+(new Date()).getTime(),{url:params.root})
+	   
+    	http.post('/editor/filetree?time='+(new Date()).getTime(),{url:params.root})
 		.then(function (data) {
 			scope.dataForTheTree=data.data;
+			
 		})
+	  
+		
 		
 	}]);
 });

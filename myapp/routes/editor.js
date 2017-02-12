@@ -10,8 +10,12 @@ router.post('/filetree',function (req,res,next) {
 	try{
 		var murl=req.body.url.replace(/¿/g,"/");
 		console.log(murl)
-		var result=gu.walk(murl,null);
+		var result=gu.walk(murl,[
+			'bower_components','node_modules'
+			]);
+		// mutil.mfs.writeJson("../catch/"+req.body.url.replace(/¿\\/g,"_"),result);
 		res.json(result);
+
 
 	}catch(err){
 		console.log(err)
@@ -32,7 +36,7 @@ router.post('/save',function (req,res,next) {
 	if(!req.body.url)res.send("地址不能为空");
 	var murl=req.body.url.replace(/¿/g,"/");
 	if(mutil.fs.exists(murl)){
-		mutil.fs.write(murl,req.body.content)
+		mutil.mfs.write(murl,req.body.content)
 		res.send("保存成功");
 	}else{
 		res.send(murl)

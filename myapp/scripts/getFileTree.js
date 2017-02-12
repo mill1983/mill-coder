@@ -8,7 +8,7 @@ var troot="";
 obj.walk=eachFile;
 obj.on=event.on;
 obj.emit=event.emit;
-function walk(path,file) {  
+function walk(path,file,noeach) {  
 	
 	if(file==null){
 		file={};
@@ -17,6 +17,7 @@ function walk(path,file) {
 		file.child=[];
 		obj.emit('dir',path);
 	}
+
     floor++;  
     var files=fs.readdirSync(path);
 
@@ -30,10 +31,15 @@ function walk(path,file) {
         if(file.child)
         file.child.push(temfile);
         var stats= fs.statSync(tmpPath)  ;
-
-        if (stats.isDirectory()) {  
+        for (var i in noeach) {
+                if(item==noeach[i]){
+                  stats=null;
+            }
+        }; 
+        if (stats&&stats.isDirectory()) { 
+            
         	obj.emit('dir',tmpPath,item);
-            walk(tmpPath,temfile); 
+            walk(tmpPath,temfile,noeach); 
         } else {  
         	obj.emit('file',tmpPath,item);
         }  
@@ -46,9 +52,9 @@ function walk(path,file) {
 };  
 
 
-function eachFile(path,file) {
+function eachFile(path,noeach) {
 	troot=path;
-	var result=walk(path,file);
+	var result=walk(path,null,noeach);
 	floor=0;
 	return result;
     

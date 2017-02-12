@@ -12,7 +12,7 @@ define(['app'],function (app) {
 	    });
 	    editor.setTheme("ace/theme/monokai");
 	    editor.getSession().setMode("ace/mode/java");
-	    // acope.content=params.url;
+	    
 		http.post('/editor/content',{url:params.url}).then(
 			function (data) {
 				if(typeof(data.data)=="object")
