@@ -1,13 +1,29 @@
 <div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="alert alert-dismissable alert-info">
+				 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					{{message.title}}
+				</h4> <strong>{{message.content}}</strong> <a href="#" class="alert-link">alert link</a>
+			</div>
+		</div>
+	</div>
+<div class="row clearfix">
 	<div class="col-md-12 column">
 		<div class="row clearfix">
-			<div class="col-md-2 column">
+			<div ng-controller="treeCtrl" class="col-md-2 column">
 				<div class="input-group">
 			      <input type="text" class="form-control" placeholder="Search for...">
 			      <span class="input-group-btn">
 			        <button class="btn btn-default" type="button">{{name}}</button>
 			      </span>
 			    </div><!-- /input-group -->
+
+				<treecontrol tree-model="dataForTheTree" options="treeOptions" on-selection="showSelected(node)"
+				selected-node="node1" class="tree-classic">
+					<span ng-click="buttonClick($event, node)">{{$index}} {{node.name}}</span> 
+				</treecontrol>
+
 			</div>
 			<div class="col-md-6 column">
 				<div class="btn-group">
@@ -19,9 +35,12 @@
 				<div id="editor"> </div>
 			</div>
 			<div class="col-md-4 column">
-				<code>
-					{{code}}
-				</code> 
+			<div class="btn-group">
+					<button ng-repeat="x in code_buttons" ng-click="funcs[x.fun]()" class="btn btn-default" type="button">
+						{{x.title}}
+					</button>
+			</div>
+				<pre class="pre-scrollable">{{code}}</pre>
 			</div>
 		</div>
 	</div>

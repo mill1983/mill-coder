@@ -9,6 +9,7 @@ requirejs.config({
         "nav":"/javascripts/common/nav",
         "navCtrl":"/javascripts/common/navCtrl",
         "aceconf":"/javascripts/common/aceconf",
+        "const":"/javascripts/common/const",
 	},
 	shim:{
 		"acetools":{exports:"acetools"},
@@ -58,6 +59,7 @@ require([
     "ace",
     "ext-language",
     "app",
+    "const",
     "treeCtrl",
     "indexCtrl",
     "navCtrl",
