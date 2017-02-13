@@ -16,6 +16,8 @@
     "angular-route": "^1.5.11",
     "bootstrap": "^3.3.7",
     "angular-tree-control": "^0.2.28",
-    "require-css": "^0.1.8"
+    "require-css": "^0.1.8",
+    "context.bootstrap": "http://lab.jakiestfu.com/contextjs/context.bootstrap.css",
+    "context": "http://lab.jakiestfu.com/contextjs/context.js"
   }
 }
