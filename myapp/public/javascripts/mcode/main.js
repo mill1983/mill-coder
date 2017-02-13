@@ -6,6 +6,7 @@ requirejs.config({
         "angular-route":"/angular-route/angular-route",
         "ui-bootstrap":"/angular-bootstrap/ui-bootstrap",
         "angular-tree":"/angular-tree-control/angular-tree-control",
+        "context":"/context/index",
         "nav":"/javascripts/common/nav",
         "navCtrl":"/javascripts/common/navCtrl",
         "aceconf":"/javascripts/common/aceconf",
@@ -22,6 +23,10 @@ requirejs.config({
                 "css!/angular-tree-control/css/tree-control.css",
 
             ]
+        },
+        "context":{
+            exports:"context",
+            deps:["css!/context.standalone/index.css"]
         },
         "angular-route":{
             exports:"angular-route",
@@ -58,13 +63,17 @@ require([
     "angular-route",
     "ace",
     "ext-language",
+    "context",
     "app",
     "const",
+    "context_config",
+    "ace_context",
     "treeCtrl",
     "indexCtrl",
     "navCtrl",
     "nav",
     "route",
+    
 
     ],function (angular) {
     angular.bootstrap(document,["mcodeApp"]);
