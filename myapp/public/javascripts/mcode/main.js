@@ -67,6 +67,7 @@ require([
     "app",
     "const",
     "context_config",
+    "tree2arr",
     "ace_context",
     "treeCtrl",
     "indexCtrl",

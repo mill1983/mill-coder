@@ -85,7 +85,7 @@ function  (argument) {\r\n\
 
 			
 
-		}
+		};
 		//为右键菜单注册点击事件
 		treeContext.setContextFunc({
 			createModel:function () {//创建模块

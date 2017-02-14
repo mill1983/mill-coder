@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var mutil=require('mill-n-utils');
+var path=require('path');
+var sqlite=require("mill-sqlite-utils");
+var dbutil=sqlite.base;
+var db=dbutil.getdb(path.join(__dirname,"../catch/mcode.db"));
 
 router.get('/',function (req,res,next) {
 	res.render('mcode');
@@ -17,4 +21,11 @@ router.post('/create/code',function (req,res,next) {
 
 
 });
+router.get("/getmcodes",function (req,res) {
+	var pro=dbutil.getAll(db,"SELECT mcode.id, mcode.name, mcode.parent_id, mcode.is_leaves FROM mcode",{});
+	pro.then(function (data) {
+		res.json(data);
+	});
+	
+})
 module.exports = router;
