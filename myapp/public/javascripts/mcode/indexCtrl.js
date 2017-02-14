@@ -2,9 +2,9 @@ define(['app'],function (app) {
 	/**
 		主要负责对文件的搜索和查找
 	*/
-	app.controller('IndexCtrl',['$scope','$routeParams','sessionKey','$http',
-		'treeContext','aceContext',
-		function (acope,params,sessionKey,http,treeContext,aceContext) {
+	app.controller('IndexCtrl',['$scope','$routeParams','sessionKey','$http'
+	,'aceContext',
+		function (acope,params,sessionKey,http,aceContext) {
 
 		acope.name="mill";
 		acope.code='\
@@ -43,6 +43,8 @@ function  (argument) {\r\n\
 	    } });
 	    aceContext.setEditor(editor);
 
+	   
+	    
 	    acope.funcs={
 			save:function () {
 
@@ -86,12 +88,7 @@ function  (argument) {\r\n\
 			
 
 		};
-		//为右键菜单注册点击事件
-		treeContext.setContextFunc({
-			createModel:function () {//创建模块
-				alert(acope.code);
-			}
-		});
+		
 
 	}])//enc controller
 })

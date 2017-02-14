@@ -10,9 +10,18 @@ define(['context','app'], function(c,app) {
 			preventDoubleContext: true,//打断默认右键菜单在context上
 			compress: false//压缩
 		});
-
-
-	context.attach('.tree-leaf-head.a5', [{
+	
+	context.attach('.ng-binding.ng-scope.branch', [
+		{header:'模块管理'},
+		{
+			text: '创建模块',
+			action: function(e,text) {
+				e.preventDefault();
+				funcs.createModel(text);
+			}
+		},
+	]);
+	context.attach('.ng-binding.ng-scope.leaf', [{
 		header: '模块管理'
 	}, {
 		text: 'My Link Title',
@@ -20,13 +29,7 @@ define(['context','app'], function(c,app) {
 		target: '_blank'
 	}, {
 		divider: true
-	}, {
-		text: '创建模块',
-		action: function(e) {
-			e.preventDefault();
-			funcs.createModel();
-		}
-	}, {
+	},  {
 		text: 'My Sub-menu',
 		subMenu: [{
 			text: 'My Link Title',

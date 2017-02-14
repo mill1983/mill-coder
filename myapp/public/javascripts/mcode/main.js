@@ -11,6 +11,7 @@ requirejs.config({
         "navCtrl":"/javascripts/common/navCtrl",
         "aceconf":"/javascripts/common/aceconf",
         "const":"/javascripts/common/const",
+        "small_modal":"/javascripts/common/small_modal",
 	},
 	shim:{
 		"acetools":{exports:"acetools"},
@@ -66,6 +67,7 @@ require([
     "context",
     "app",
     "const",
+    "rightClick",
     "context_config",
     "tree2arr",
     "ace_context",
@@ -73,6 +75,7 @@ require([
     "indexCtrl",
     "navCtrl",
     "nav",
+    "small_modal",
     "route",
     
 
