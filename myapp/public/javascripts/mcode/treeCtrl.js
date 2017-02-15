@@ -1,6 +1,7 @@
 define(['app'],function (app) {
-	app.controller('treeCtrl',['$scope','$http','$routeParams','tree2arr','treeContext'
-		,function (scope,http,params,tree2arr,treeContext) {
+	app.controller('treeCtrl',['$scope','$http',
+		'$routeParams','tree2arr','treeContext','McodeDbService'
+		,function (scope,http,params,tree2arr,treeContext,McodeDbService) {
 		var currentNode={};
 		scope.treeOptions = {
 		    nodeChildren: "child",
@@ -41,6 +42,16 @@ define(['app'],function (app) {
 			createModel:function (id) {//创建模块
 				$("#treeModal").modal("show")
 				alert(currentNode.name);
+				var promise=McodeDbService.insert({
+					"name": "maven",
+					"parent_id": 1,
+					"is_leaves": 0
+				});
+				promise.then(function (data) {
+					console.log(data)
+				},function (err) {
+					console.log(err)
+				})
 			}
 		});
 		

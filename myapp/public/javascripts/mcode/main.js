@@ -70,6 +70,7 @@ require([
     "rightClick",
     "context_config",
     "tree2arr",
+    "McodeDbService",
     "ace_context",
     "treeCtrl",
     "indexCtrl",
