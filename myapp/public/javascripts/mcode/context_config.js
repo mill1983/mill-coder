@@ -17,9 +17,15 @@ define(['context','app'], function(c,app) {
 			text: '创建模块',
 			action: function(e,text) {
 				e.preventDefault();
-				funcs.createModel(text);
+				funcs.createModel(text,0);
 			}
-		},
+		},{
+			text: '添加条目',
+			action: function(e,text) {
+				e.preventDefault();
+				funcs.createItem(text,1);
+			}
+		}
 	]);
 	context.attach('.ng-binding.ng-scope.leaf', [{
 		header: '条目管理'

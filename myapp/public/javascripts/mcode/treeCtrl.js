@@ -1,11 +1,34 @@
 define(['app'],function (app) {
+
+	function refrent (http,scope,tree2arr) {
+		http.get("/mcode/getmcodes").then(function (data) {
+			var tree=tree2arr.arr2tree(data.data);
+			scope.dataForTheTree=tree;
+
+		});
+	}
+	function insert (McodeDbService,data,cb) {
+		McodeDbService.insert(data)
+		.then(cb,function (err) {
+			console.log(err)
+		});
+	}
+	function setCache (sessionKey,node) {
+		sessionStorage.setItem(sessionKey.tplcatch,node.code||"");
+		sessionStorage.setItem(sessionKey.mcodeConf,node.config||"");
+	}
 	app.controller('treeCtrl',['$scope','$http',
-		'$routeParams','tree2arr','treeContext','McodeDbService'
-		,function (scope,http,params,tree2arr,treeContext,McodeDbService) {
-		var currentNode={};
+		'$routeParams','tree2arr','treeContext','McodeDbService',"SmallModalService","sessionKey"
+		,function (scope,http,params,tree2arr,treeContext,McodeDbService,SmallModalService,sessionKey) {
+		var currentNode={};//当前选中的枝节点
+		var nowNode={};//当前编辑的节点
+		SmallModalService.config({id:"myModal"});
 		scope.treeOptions = {
 		    nodeChildren: "child",
 		    dirSelectable: true,
+		    isLeaf:function  (node) {
+		    	return node.is_leaves;
+		    },
 		    injectClasses: {
 		        ul: "a1",
 		        li: "a2",
@@ -21,17 +44,36 @@ define(['app'],function (app) {
 		scope.modal={
 	    	id:"myModal",
 	    	title:"创建模块",
-	    	show:true
+	    	show:false
 	    }
-		http.get("/mcode/getmcodes").then(function (data) {
-			var tree=tree2arr.arr2tree(data.data);
-			scope.dataForTheTree=tree;
+		scope.form={
+	    	name:"name",
+	    	addModel:function  () {
+	    		var data={
+					"name": this.name,
+					"parent_id": currentNode.id,
+					"is_leaves": currentNode.type
+				}
+				SmallModalService.hide();
+				insert(McodeDbService,data,function (data) {
+					refrent(http,scope,tree2arr);
+				});
+				
 
-		});
+	    	}
+		}
+		refrent(http,scope,tree2arr);
+		
 		scope.buttonClick = function($event, node) {
-			// location.goPath(node,0);
 			$event.stopPropagation();
+			if(node.is_leaves){//叶节点
+				nowNode=node;
+				scope.setEditorNode(node);
+				setCache(sessionKey,node);
+				
+			}
 	     };
+
 	   //右键点击事件
 	    scope.markme=function (e,node) {
 	    	currentNode=node;
@@ -39,19 +81,15 @@ define(['app'],function (app) {
     	scope.dataForTheTree=[];
 	  	//为右键菜单注册点击事件
 		treeContext.setContextFunc({
-			createModel:function (id) {//创建模块
-				$("#treeModal").modal("show")
-				alert(currentNode.name);
-				var promise=McodeDbService.insert({
-					"name": "maven",
-					"parent_id": 1,
-					"is_leaves": 0
-				});
-				promise.then(function (data) {
-					console.log(data)
-				},function (err) {
-					console.log(err)
-				})
+			createModel:function (id,type) {//创建模块
+				SmallModalService.show();
+				currentNode.type=type;
+				
+			},
+			createItem:function (id,type) {//创建条目
+				SmallModalService.show();
+				currentNode.type=type;
+				
 			},
 			deleteItem:function () {
 				var promise=McodeDbService.delete(currentNode.id);

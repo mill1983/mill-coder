@@ -6,6 +6,9 @@
 					{{message.title}}
 				</h4> <strong>{{message.content}}</strong> <a href="#" class="alert-link">alert link</a>
 			</div>
+			<h3 ng-if="editorNode">
+				当前编辑的节点是:--{{editorNode.name}}
+			</h3>
 		</div>
 	</div>
 <div class="row clearfix">
@@ -21,9 +24,17 @@
 
 				<treecontrol tree-model="dataForTheTree" options="treeOptions" on-selection="showSelected(node)"
 				selected-node="node1" class="tree-classic">
-					<span data-id="{{node.id}}" ng-class="{branch:node.child.length>0,leaf:node.child.length==0}" ng-click="buttonClick($event, node)" ng-right-click="markme($event, node)">{{$index}} {{node.name}}</span> 
+					<span data-id="{{node.id}}" ng-class="{branch:node.is_leaves==0,leaf:node.is_leaves==1}" ng-click="buttonClick($event, node)" ng-right-click="markme($event, node)">{{$index}} {{node.name}}</span> 
 				</treecontrol>
-				<small-modal small-modal-data="modal" show="{{modal.show}}"></small-modal>
+				<small-modal small-modal-data="modal" show="modal.show">
+					<form role="form">
+				<div class="form-group">
+					 <label for="exampleInputEmail1">模块名称{{form.name}}</label><input type="text" class="form-control" id="exampleInputEmail1" ng-model="form.name"/>
+				</div>
+				<button type="submit" ng-click="form.addModel()" class="btn btn-default">Submit</button>
+			</form>
+
+				</small-modal>
 			</div>
 			<div class="col-md-6 column">
 				<div class="btn-group">
