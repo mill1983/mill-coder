@@ -1,6 +1,8 @@
 define(['app'],function (app) {
-	app.controller('treeCtrl',['$scope','$http','$routeParams','tree2arr'
-		,function (scope,http,params,tree2arr) {
+	app.controller('treeCtrl',['$scope','$http',
+		'$routeParams','tree2arr','treeContext','McodeDbService'
+		,function (scope,http,params,tree2arr,treeContext,McodeDbService) {
+		var currentNode={};
 		scope.treeOptions = {
 		    nodeChildren: "child",
 		    dirSelectable: true,
@@ -15,6 +17,12 @@ define(['app'],function (app) {
 		        labelSelected: "a8"
 		    }
 		}
+		//模态框初始化
+		scope.modal={
+	    	id:"myModal",
+	    	title:"创建模块",
+	    	show:true
+	    }
 		http.get("/mcode/getmcodes").then(function (data) {
 			var tree=tree2arr.arr2tree(data.data);
 			scope.dataForTheTree=tree;
@@ -24,9 +32,36 @@ define(['app'],function (app) {
 			// location.goPath(node,0);
 			$event.stopPropagation();
 	     };
-	   
+	   //右键点击事件
+	    scope.markme=function (e,node) {
+	    	currentNode=node;
+	    };
     	scope.dataForTheTree=[];
-	  
+	  	//为右键菜单注册点击事件
+		treeContext.setContextFunc({
+			createModel:function (id) {//创建模块
+				$("#treeModal").modal("show")
+				alert(currentNode.name);
+				var promise=McodeDbService.insert({
+					"name": "maven",
+					"parent_id": 1,
+					"is_leaves": 0
+				});
+				promise.then(function (data) {
+					console.log(data)
+				},function (err) {
+					console.log(err)
+				})
+			},
+			deleteItem:function () {
+				var promise=McodeDbService.delete(currentNode.id);
+				promise.then(function (data) {
+					console.log(data);
+				},function (err) {
+					console.log(err);
+				})
+			}
+		});
 		
 		
 	}]);

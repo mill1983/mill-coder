@@ -9,8 +9,8 @@ define(['app'],function (app) {
 				url:"/editor",
 				val:"文件编辑"
 			},{
-				url:"http://www.163.com",
-				val:"lina",
+				url:"/mcode",
+				val:"代码片段",
 				active:true
 			},{
 				url:"http://www.126.com",
