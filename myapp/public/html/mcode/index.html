@@ -23,7 +23,29 @@
 				selected-node="node1" class="tree-classic">
 					<span data-id="{{node.id}}" ng-class="{branch:node.child.length>0,leaf:node.child.length==0}" ng-click="buttonClick($event, node)" ng-right-click="markme($event, node)">{{$index}} {{node.name}}</span> 
 				</treecontrol>
-				<small-modal small-modal-data="modal" show="{{modal.show}}"></small-modal>
+				<small-modal small-modal-data="modal" show="{{modal.show}}">
+					<div class="row clearfix">
+					<div class="col-md-12 column">
+						<form role="form">
+							<div class="form-group">
+								 <label for="exampleInputEmail1">模块名称</label><input type="text" class="form-control" id="exampleInputEmail1" ng-model="nodename"/>
+							</div>
+							<div class="form-group">
+								 <label for="exampleInputPassword1">{{name}}</label><input type="password" class="form-control" id="exampleInputPassword1" />
+							</div>
+							<div class="form-group">
+								 <label for="exampleInputFile">File input</label><input type="file" id="exampleInputFile" />
+								<p class="help-block">
+									Example block-level help text here.
+								</p>
+							</div>
+							<div class="checkbox">
+								 <label><input type="checkbox" />Check me out</label>
+							</div> <button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</div>
+				</div>
+				</small-modal>
 			</div>
 			<div class="col-md-6 column">
 				<div class="btn-group">
