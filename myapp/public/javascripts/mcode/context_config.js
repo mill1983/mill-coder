@@ -22,11 +22,17 @@ define(['context','app'], function(c,app) {
 		},
 	]);
 	context.attach('.ng-binding.ng-scope.leaf', [{
-		header: '模块管理'
+		header: '条目管理'
 	}, {
 		text: 'My Link Title',
 		href: 'http://contextjs.com/',
 		target: '_blank'
+	},{
+		text: '删除',
+		action: function (e,text) {
+			e.preventDefault();
+			funcs.deleteItem(text);
+		}
 	}, {
 		divider: true
 	},  {

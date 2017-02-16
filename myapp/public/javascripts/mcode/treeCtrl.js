@@ -52,6 +52,14 @@ define(['app'],function (app) {
 				},function (err) {
 					console.log(err)
 				})
+			},
+			deleteItem:function () {
+				var promise=McodeDbService.delete(currentNode.id);
+				promise.then(function (data) {
+					console.log(data);
+				},function (err) {
+					console.log(err);
+				})
 			}
 		});
 		

@@ -9,6 +9,9 @@ define(['app'],function (app) {
 		this.insert=function (data) {
 			return http.post('/mcode_db/add_code',{data:data});
 		};
+		this.delete=function (delId) {
+			return http.get('/mcode_db/delete_code/'+delId);
+		}
 
 	}])
 })
