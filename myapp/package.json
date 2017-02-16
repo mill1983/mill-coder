@@ -15,7 +15,6 @@
     "jade": "~1.11.0",
     "mill-gulp-utils": "^1.0.0",
     "mill-n-utils": "^1.0.7",
-    "mill-sqlite-utils": "^1.0.2",
     "morgan": "~1.7.0",
     "promise": "^7.1.1",
     "serve-favicon": "~2.3.0"
