@@ -11,7 +11,6 @@ define(["app"],function (app) {
 				obj[item.id]=item;
 			});
 			arr.forEach(function (item,index,arr) {
-				if(!obj[item.parent_id])debugger;
 				obj[item.parent_id].child.push(item);
 			});
 			return obj[0];

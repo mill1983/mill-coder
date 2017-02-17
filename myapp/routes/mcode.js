@@ -16,13 +16,13 @@ router.post('/create/code',function (req,res,next) {
 		var code=mutil.ejs.render(req.body.tpl,JSON.parse(req.body.conf));
 		res.send(code);
 	}catch(err){
-		res.json(err);
+		res.send(err);
 	}
 
 
 });
 router.get("/getmcodes",function (req,res) {
-	var pro=dbutil.getAll(db,"SELECT mcode.id, mcode.name, mcode.parent_id, mcode.is_leaves FROM mcode",{});
+	var pro=dbutil.getAll(db,"SELECT * FROM mcode",{});
 	pro.then(function (data) {
 		res.json(data);
 	});

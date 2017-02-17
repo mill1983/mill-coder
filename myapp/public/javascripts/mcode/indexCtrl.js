@@ -12,6 +12,10 @@ function  (argument) {\r\n\
 	// body...\
 \r\n\}\
 ';
+		acope.editorNode={};
+		acope.setEditorNode=function  (node) {
+			acope.editorNode=node;
+		}
 		acope.message={
 			title:"编辑代码片段",
 			content:"代码片段管理"
@@ -47,8 +51,14 @@ function  (argument) {\r\n\
 	    
 	    acope.funcs={
 			save:function () {
-
-				acope.code=editor.getValue();
+				if(!acope.editorNode.id)return;
+				// acope.code=editor.getValue();
+				acope.editorNode.code=sessionStorage.getItem(sessionKey.tplcatch);
+				acope.editorNode.config=sessionStorage.getItem(sessionKey.mcodeConf);
+				http.post('/mcode_db/update_code',{data:acope.editorNode}).
+				then(function  (data) {
+					console.log(data)
+				})
 				
 			},
 			cachetpl:function () {
